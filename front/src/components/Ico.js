@@ -1,5 +1,5 @@
 import {
-   BoxGeometry,
+    BoxGeometry,
     MeshNormalMaterial,
     Mesh,
 } from "three";
@@ -10,9 +10,9 @@ export default class Ico extends Mesh {
         super()
         console.log("ico")
         this.scene = scene;
-        this.geometry = new BoxGeometry(10,10,10);
+        this.geometry = new BoxGeometry(50, 50, 50);
         this.material = new MeshNormalMaterial();
-        
+
         this.scene.add(this)
     }
     update() {

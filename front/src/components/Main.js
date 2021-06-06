@@ -11,7 +11,7 @@ import {
 } from 'three';
 import Renderer from './Renderer';
 import Camera from './Camera';
-import Model from "./Model"
+
 import Keyboard from "./Keyboard"
 import Animation from "./Animation"
 import Config from './Config';
@@ -22,7 +22,7 @@ import Ico from './Ico';
 export default class Main {
     constructor(container) {
         // właściwości klasy
-        this.camVect = new Vector3(-200, 50, 0)
+        this.camVect = new Vector3(10, 10, 0)
         this.container = container;
         this.scene = new Scene();
         this.renderer = new Renderer(this.scene, container);
@@ -55,25 +55,21 @@ export default class Main {
 
         this.manager = new LoadingManager();
 
-
         // szesciany
-        this.ico = new Ico(this.scene)
-        let x = Math.floor((Math.random() * 100) - 50);
-        let z = Math.floor((Math.random() * 100) - 50);
-        this.ico.position.set(x, 0, z)
-        this.scene.add(this.ico)
+        let x = 0
+        let z = -120
+        for (let i = 0; i < 4; i++) {
+            this.ico = new Ico(this.scene)
+
+
+            z = -90 + i * 60
+            this.ico.position.set(x, 0, z)
+            this.scene.add(this.ico)
+        }
+
         //raycast
 
 
-        // model
-
-        this.model = new Model(this.scene, this.manager)
-        this.model.load(marioMD2);
-
-        if (this.model.getModel()) {
-            let ray = new Ray(this.model.getModel().position, this.model.getModel().getWorldDirection().multiplyScalar(-1))
-            this.raycaster.ray = ray
-        }
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
@@ -82,34 +78,14 @@ export default class Main {
 
         //
 
-        this.manager.onLoad = () => {
 
-            this.isLoaded = true;
-            //
-            console.log("MODEL LOADED!!!")
-
-            // model loaded - można sterować animacjami
-
-            this.animation = new Animation(this.model.mesh)
-
-            // przykładowa animacja z modelu Mario
-
-            this.animation.playAnim("crwalk")
-
-            //kawiatura
-
-            this.keyboard = new Keyboard(window, this.animation, this.model.mesh);
-
-        };
 
         this.showCard()
         this.render();
     }
 
     render() {
-        if (this.model.getModel()) {
-            console.log(this.model.getModel())
-        }
+
         // początek pomiaru wydajności
         this.stats.begin()
 
@@ -126,26 +102,6 @@ export default class Main {
 
 
 
-        if (this.model.mesh) {
-            //
-            if (Config.rotateLeft) {
-                this.model.mesh.rotation.y += 0.05
-            }
-            if (Config.rotateRight) {
-                this.model.mesh.rotation.y -= 0.05
-            }
-            if (Config.moveForward) {
-                this.model.mesh.translateX(3)
-            }
-
-
-            const camVect = new Vector3(-200, 50, 0)
-            const camPos = camVect.applyMatrix4(this.model.mesh.matrixWorld);
-            this.camera.threeCamera.position.x = camPos.x
-            this.camera.threeCamera.position.y = camPos.y
-            this.camera.threeCamera.position.z = camPos.z
-            this.camera.threeCamera.lookAt(this.model.mesh.position)
-        }
 
         //raycaster
 
