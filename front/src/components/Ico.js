@@ -1,22 +1,22 @@
 import {
-    IcosahedronGeometry,
+   BoxGeometry,
     MeshNormalMaterial,
     Mesh,
 } from "three";
 
-export default class Ico {
+export default class Ico extends Mesh {
 
     constructor(scene) {
+        super()
         console.log("ico")
         this.scene = scene;
-        this.geometry = new IcosahedronGeometry();
+        this.geometry = new BoxGeometry(10,10,10);
         this.material = new MeshNormalMaterial();
-        this.mesh = new Mesh(this.geometry, this.material);
-        this.scene.add(this.mesh)
+        
+        this.scene.add(this)
     }
     update() {
-        this.mesh.rotation.y += 0.01
+        this.rotation.y += 0.01
     }
 
 }
-
