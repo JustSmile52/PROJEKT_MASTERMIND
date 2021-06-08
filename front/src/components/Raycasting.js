@@ -1,14 +1,22 @@
-import {Raycaster} from "three"
+import { Raycaster, Vector2 } from "three"
 
 
-export default class Raycaster extends Raycaster {
+export default class ray extends Raycaster {
 
-    constructor(scene) {
+    constructor(scene, camera,) {
         super()
         console.log("ray")
         this.scene = scene;
-        this.ray = new Raycaster()
-        this.mouse = new Vector2()
+        this.camera = camera
+        //zdefiniowac plansze (w szensie tablice kostek)
 
-        this.scene.add(this)
+        window.addEventListener("click", (e) => {
+            this.mouseVector = new Vector2((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1)
+            this.setFromCamera(this.mouseVector, this.camera)
+            this.intersect = this.intersectObjects(this/*wstawic tablice z elemntami planszy */)
+            if (this.intersect[0]) {
+                //i tutaj wstawiamy grzyby
+            }
+        })
     }
+}

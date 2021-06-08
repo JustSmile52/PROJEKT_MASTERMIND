@@ -11,7 +11,7 @@ import {
 } from 'three';
 import Renderer from './Renderer';
 import Camera from './Camera';
-
+import ray from './Raycasting';
 import Keyboard from "./Keyboard"
 import Animation from "./Animation"
 import Config from './Config';
@@ -66,8 +66,17 @@ export default class Main {
             this.ico.position.set(x, 0, z)
             this.scene.add(this.ico)
         }
+        //! ZROBIC KURWA Z TEGO TABLICE JEBANE DEBILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //raycast
+        //
+        //
+        //
+        //
+        //
+        ///
+        //
+        //
 
 
         // moniytor progressu ładowania
