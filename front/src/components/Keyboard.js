@@ -1,7 +1,8 @@
-import Animation from "./Animation"
+// import Animation from "./Animation"
 import Config from "./Config";
 
 const KEYS = {
+    //TODO usunąć up i down 
     "left": 37,
     "up": 38,
     "right": 39,

@@ -13,7 +13,7 @@ import Renderer from './Renderer';
 import Camera from './Camera';
 import ray from './Raycasting';
 import Keyboard from "./Keyboard"
-import Animation from "./Animation"
+// import Animation from "./Animation"
 import Config from './Config';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import marioMD2 from './assets/Icha.MD2';
@@ -29,9 +29,8 @@ export default class Main {
         this.camera = new Camera(this.renderer.threeRenderer);
 
         this.isLoaded = null
-        this.animation = null
-
-        // raycaster
+        // this.animation = null
+        this.tablica_kostek = []
 
 
 
@@ -56,17 +55,24 @@ export default class Main {
         this.manager = new LoadingManager();
 
         // szesciany
-        let x = 0
-        let z = -120
-        for (let i = 0; i < 4; i++) {
-            this.ico = new Ico(this.scene)
+        //* zrobiona tablica dwuwyiarowa
+        let x 
+        let z 
+        for(let i= 0; i<12; i++){
+           this.tablica_kostek[i] =[]
+            for (let j = 0; j < 4; j++) {
+                
+                this.ico = new Ico(this.scene)
+                this.tablica_kostek[i][j] = this.ico
 
-
-            z = -90 + i * 60
-            this.ico.position.set(x, 0, z)
-            this.scene.add(this.ico)
+                x=-330 +i*60
+                z = -90 + j * 60    
+                this.ico.position.set(x, 0, z)
+                this.scene.add(this.ico)   
+            }
         }
-        //! ZROBIC KURWA Z TEGO TABLICE JEBANE DEBILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // console.log(this.tablica_kostek);
+
 
         //raycast
         //
@@ -85,10 +91,8 @@ export default class Main {
             console.log(`progress ${item}: ${loaded} ${total}`);
         };
 
+
         //
-
-
-
         this.showCard()
         this.render();
     }
@@ -102,7 +106,7 @@ export default class Main {
         var delta = this.clock.getDelta();
 
         // wykonanie funkcji update w module Animations - zobacz do pliku Animations
-        if (this.animation) this.animation.update(delta)
+        // if (this.animation) this.animation.update(delta)
 
         this.renderer.render(this.scene, this.camera.threeCamera);
 
@@ -120,7 +124,7 @@ export default class Main {
         // koniec statystyk
         this.stats.end()
 
-        requestAnimationFrame(this.render.bind(this));
+        // requestAnimationFrame(this.render.bind(this));
     }
 
     extractValue(reg, str) {

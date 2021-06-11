@@ -1,3 +1,4 @@
+//* Nie potrzebne do puki nie zrobimy modeli kulek
 import {
 	AnimationClip,
 	BufferGeometry,

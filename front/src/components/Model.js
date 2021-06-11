@@ -1,3 +1,4 @@
+//* Nie potrzebne do puki nie zrobimy modeli kulek
 import { MD2Loader } from './MD2Loader';
 import { Mesh, TextureLoader, MeshPhongMaterial } from "three"
 import marioTex from "./assets/Icha.jpg"

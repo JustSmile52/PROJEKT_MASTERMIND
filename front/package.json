@@ -1,7 +1,6 @@
 {
   "name": "project_test",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "css-loader": "^5.2.1",
@@ -24,5 +23,6 @@
     "go": "webpack && webpack serve --open"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }
