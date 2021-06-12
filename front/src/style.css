@@ -2,3 +2,9 @@ html, body {
     background-color: antiquewhite;
     color: teal;
 }
+#tyl{
+    left: 100;
+}
+#przod{
+    left: 150;
+}
