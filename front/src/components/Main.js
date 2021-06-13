@@ -18,7 +18,11 @@ import Config from './Config';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import marioMD2 from './assets/Icha.MD2';
 import Ico from './Ico';
-
+import SphereRed from './Spheres/SpherevRed'
+import SphereBlue from './Spheres/SphereBlue'
+import SphereGreen from './Spheres/SphereGreen'
+import SphereYellow from './Spheres/SphereYellow'
+import SphereBlack from './Spheres/SphereBlack'
 export default class Main {
     constructor(container) {
         // właściwości klasy
@@ -56,22 +60,54 @@ export default class Main {
 
         // szesciany
         //* zrobiona tablica dwuwyiarowa
-        let x 
-        let z 
-        for(let i= 0; i<12; i++){
-           this.tablica_kostek[i] =[]
+        let x
+        let z
+        let pom = 0
+        for (let i = 0; i < 12; i++) {
+            this.tablica_kostek[i] = []
             for (let j = 0; j < 4; j++) {
-                
-                this.ico = new Ico(this.scene)
-                this.tablica_kostek[i][j] = this.ico
 
-                x=-330 +i*60
-                z = -90 + j * 60    
+
+                this.ico = new Ico(this.scene)
+                this.ico.pomocnicza = pom
+                this.tablica_kostek[i][j] = this.ico
+                pom = pom + 1
+                x = -330 + i * 60
+                z = -90 + j * 60
                 this.ico.position.set(x, 0, z)
-                this.scene.add(this.ico)   
+                this.scene.add(this.ico)
+
+
+
             }
         }
-        // console.log(this.tablica_kostek);
+        console.log(this.tablica_kostek);
+
+
+        //sfery
+        this.czerwona = new SphereRed(this.scene)
+        this.czerwona.position.set(100, 0, 200)
+        this.scene.add(this.czerwona)
+
+        this.niebieska = new SphereBlue(this.scene)
+        this.niebieska.position.set(100, 0, 250)
+        this.scene.add(this.niebieska)
+
+        this.zielona = new SphereGreen(this.scene)
+        this.zielona.position.set(150, 0, 200)
+        this.scene.add(this.zielona)
+
+        this.zolta = new SphereYellow(this.scene)
+        this.zolta.position.set(150, 0, 250)
+        this.scene.add(this.zolta)
+
+        this.czarna = new SphereBlack(this.scene)
+        this.czarna.position.set(200, 0, 250)
+        this.scene.add(this.czarna)
+
+
+
+
 
 
         //raycast
@@ -114,6 +150,10 @@ export default class Main {
         // tworząc w nim np funkcję update() i wywoływać ją poniżej
 
 
+        // switch{
+        //     case: GetElementbyId("kolorek").style.background-color = red,
+
+        // }
 
 
         //raycaster
