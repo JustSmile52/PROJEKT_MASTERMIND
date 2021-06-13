@@ -23,6 +23,8 @@ import SphereBlue from './Spheres/SphereBlue'
 import SphereGreen from './Spheres/SphereGreen'
 import SphereYellow from './Spheres/SphereYellow'
 import SphereBlack from './Spheres/SphereBlack'
+import pomocnicza from '/src/index'
+console.log(pomocnicza);
 export default class Main {
     constructor(container) {
         // właściwości klasy
