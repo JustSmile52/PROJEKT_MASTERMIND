@@ -17,11 +17,6 @@ export default class ray extends Raycaster {
             this.setFromCamera(this.mouseVector, this.camera)
             this.intersect = this.intersectObjects(this.tablica_kostek)
             if (this.intersect[0]) {
-                //i tutaj wstawiamy grzyby
-                //if (this.intersect[0] status = false){
-
-                //}
-                // else
 
 
             }

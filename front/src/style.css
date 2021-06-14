@@ -20,7 +20,7 @@ html, body {
     position: absolute;
 }
 #kolorek{
-    background-color: crimson;
+    background-color: red;
     border: 1px solid black;
     width: 50px;
     height: 50px;
