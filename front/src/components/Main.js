@@ -121,7 +121,7 @@ export default class Main {
         ///
         //
         //
-
+        this.ray = new ray(this.scene, this.Camera, this.tablica_kostek)
 
         // moniytor progressu ładowania
 
