@@ -1,9 +1,8 @@
 import './style.css';
 
+let pomocnicza = 0
 
 import Main from './components/Main';
-
-console.log("siema dizala")
 
 
 function zniana_koloru() {
@@ -32,7 +31,6 @@ function zniana_koloru() {
     }
 }
 
-let pomocnicza = 0
 function przod() {
 
     $("#przod").on("click", function () {
@@ -41,12 +39,14 @@ function przod() {
             pomocnicza = pomocnicza + 1
             console.log(pomocnicza)
             zniana_koloru()
+            document.getElementById("pom").value=pomocnicza
             return pomocnicza
         }
         else {
             pomocnicza = 0
             console.log(pomocnicza)
             zniana_koloru()
+            document.getElementById("pom").value=pomocnicza
             return pomocnicza
         }
     })
@@ -58,16 +58,33 @@ function tyl() {
             pomocnicza = pomocnicza - 1
             console.log(pomocnicza)
             zniana_koloru()
+            document.getElementById("pom").value=pomocnicza
             return pomocnicza
+
         }
         else {
             pomocnicza = 4
             console.log(pomocnicza)
             zniana_koloru()
+            document.getElementById("pom").value=pomocnicza
             return pomocnicza
         }
+        
     })
 }
+
+// function getPom(){
+//     $("#tyl").on("click", function () {
+//         return pomocnicza
+
+//     })
+//     $("#przod").on("click", function () {
+//         return pomocnicza
+
+//     })
+//     return pomocnicza
+   
+// }
 
 function init() {
     //div

@@ -23,8 +23,7 @@ import SphereBlue from './Spheres/SphereBlue'
 import SphereGreen from './Spheres/SphereGreen'
 import SphereYellow from './Spheres/SphereYellow'
 import SphereBlack from './Spheres/SphereBlack'
-import pomocnicza from '/src/index'
-console.log(pomocnicza);
+
 export default class Main {
     constructor(container) {
         // właściwości klasy
@@ -62,6 +61,7 @@ export default class Main {
 
         // szesciany
         //* zrobiona tablica dwuwyiarowa
+        this.tab2 = []
         let x
         let z
         let pom = 0
@@ -73,6 +73,7 @@ export default class Main {
                 this.ico = new Ico(this.scene)
                 this.ico.pomocnicza = pom
                 this.tablica_kostek[i][j] = this.ico
+
                 pom = pom + 1
                 x = -330 + i * 60
                 z = -90 + j * 60
@@ -80,10 +81,10 @@ export default class Main {
                 this.scene.add(this.ico)
 
 
-
+                this.tab2.push(this.ico)
             }
+            
         }
-        console.log(this.tablica_kostek);
 
 
         //sfery
@@ -119,10 +120,9 @@ export default class Main {
         //
         //
         ///
-        //
-        //
-        this.ray = new ray(this.scene, this.Camera, this.tablica_kostek)
-
+        let kolor_kuli = document.getElementById("pom").value
+        console.log(kolor_kuli)
+        this.ray = new ray(this.Scene, this.camera, this.tab2, kolor_kuli)
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
@@ -209,3 +209,9 @@ export default class Main {
         });
     }
 }
+
+
+
+
+
+
