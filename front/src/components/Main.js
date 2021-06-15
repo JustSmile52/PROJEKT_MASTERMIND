@@ -83,7 +83,7 @@ export default class Main {
 
                 this.tab2.push(this.ico)
             }
-            
+
         }
 
 
@@ -120,7 +120,7 @@ export default class Main {
         //
         //
         ///
-        this.ray = new ray(this.Scene, this.camera, this.tab2)
+        this.ray = new ray(this.Scene, this.camera, this.tab2, this.czerwona, this.niebieska, this.zielona, this.zolta, this.czarna)
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
