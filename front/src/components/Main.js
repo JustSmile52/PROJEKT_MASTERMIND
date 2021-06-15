@@ -12,17 +12,16 @@ import {
 import Renderer from './Renderer';
 import Camera from './Camera';
 import ray from './Raycasting';
-import Keyboard from "./Keyboard"
-// import Animation from "./Animation"
+import Keyboard from "./Keyboard";
 import Config from './Config';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import marioMD2 from './assets/Icha.MD2';
 import Ico from './Ico';
-import SphereRed from './Spheres/SpherevRed'
-import SphereBlue from './Spheres/SphereBlue'
-import SphereGreen from './Spheres/SphereGreen'
-import SphereYellow from './Spheres/SphereYellow'
-import SphereBlack from './Spheres/SphereBlack'
+import SphereRed from './Spheres/SpherevRed';
+import SphereBlue from './Spheres/SphereBlue';
+import SphereGreen from './Spheres/SphereGreen';
+import SphereYellow from './Spheres/SphereYellow';
+import SphereBlack from './Spheres/SphereBlack';
 
 export default class Main {
     constructor(container) {
@@ -61,6 +60,7 @@ export default class Main {
 
         // szesciany
         //* zrobiona tablica dwuwyiarowa
+
         this.tab2 = []
         let x
         let z
@@ -85,8 +85,6 @@ export default class Main {
             }
 
         }
-
-
         //sfery
         this.czerwona = new SphereRed(this.scene)
         this.czerwona.position.set(100, 0, 200)
@@ -120,7 +118,7 @@ export default class Main {
         //
         //
         ///
-        this.ray = new ray(this.Scene, this.camera, this.tab2, this.czerwona, this.niebieska, this.zielona, this.zolta, this.czarna)
+        this.ray = new ray(this.scene, this.camera, this.tab2, this.czerwona, this.niebieska, this.zielona, this.zolta, this.czarna)
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
