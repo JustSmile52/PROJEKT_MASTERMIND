@@ -120,9 +120,7 @@ export default class Main {
         //
         //
         ///
-        let kolor_kuli = document.getElementById("pom").value
-        console.log(kolor_kuli)
-        this.ray = new ray(this.Scene, this.camera, this.tab2, kolor_kuli)
+        this.ray = new ray(this.Scene, this.camera, this.tab2)
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
