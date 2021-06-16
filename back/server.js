@@ -37,6 +37,19 @@ app.get("/helper", function (req, res) {
 app.get("/game", function (req, res) {
     res.sendFile(path.join(__dirname + "/dist/gra.html"))
 })
+app.get("/porownywarka", function (req, res) {
+
+    baza.find({
+        nick: req.session.nick,
+    },
+        function (error, docs) {
+            console.log(docs)
+
+            res.end(JSON.stringify(docs))
+        })
+
+}
+)
 app.post("/nick", function (req, res) {
     console.log(req.body)
     req.session.nick = req.body.nick
