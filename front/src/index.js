@@ -1,11 +1,9 @@
 import './style.css';
-
+let rzad = 0
 let pomocnicza = 0
-let main =null
+let main = null
 import do_wyslania from './components/Raycasting'
 import Main from './components/Main';
-
-
 function zniana_koloru() {
     // console.log(document.querySelector("#kolorek"));
     // czerwona = 0
@@ -31,25 +29,36 @@ function zniana_koloru() {
             break
     }
 }
-function wyslij(){
+function wyslij() {
     $("#wysylka").on("click", function () {
-    let sprawdzak = 0
-    let tablica = main.getArray()
-    for(let i=0;i<4;i++){
-        if (tablica[i]== null){
-            sprawdzak=sprawdzak+1
+        let sprawdzak = 0
+        let tablica = main.getArray()
+        for (let i = 0; i < 4; i++) {
+            if (tablica[i] == null) {
+                sprawdzak = sprawdzak + 1
+            }
         }
-    }
-    if(sprawdzak==0){
-        fetch("http://localhost:3000/gra", {method:"POST",body:JSON.stringify({data:tablica}),headers:{"Content-type":"application/json"}})
-        //wysylanko na serwer tablicy
-    }
-    else{
-        console.log('tablica jest niepelna')
-    }
+        if (sprawdzak == 0) {
+            for (let i = 0; i < 4; i++) {
+                main.tab2[i + rzad * 4].active = false
+            }
+            rzad = rzad + 1
+            for (let i = 0; i < 4; i++) {
+                main.tab2[i + rzad * 4].active = true
+                console.log(main.tab2[i + rzad * 4])
+            }
+            console.log(main.tab2)
+            fetch("http://localhost:3000/gra", { method: "POST", body: JSON.stringify({ data: tablica }), headers: { "Content-type": "application/json" } })
+            //wysylanko na serwer tablicy
+
+        }
+
+        else {
+            console.log('tablica jest niepelna')
+        }
 
 
-        
+
     })
 }
 function przod() {
@@ -60,14 +69,14 @@ function przod() {
             pomocnicza = pomocnicza + 1
             console.log(pomocnicza)
             zniana_koloru()
-            document.getElementById("pom").value=pomocnicza
+            document.getElementById("pom").value = pomocnicza
             return pomocnicza
         }
         else {
             pomocnicza = 0
             console.log(pomocnicza)
             zniana_koloru()
-            document.getElementById("pom").value=pomocnicza
+            document.getElementById("pom").value = pomocnicza
             return pomocnicza
         }
     })
@@ -79,7 +88,7 @@ function tyl() {
             pomocnicza = pomocnicza - 1
             console.log(pomocnicza)
             zniana_koloru()
-            document.getElementById("pom").value=pomocnicza
+            document.getElementById("pom").value = pomocnicza
             return pomocnicza
 
         }
@@ -87,10 +96,10 @@ function tyl() {
             pomocnicza = 4
             console.log(pomocnicza)
             zniana_koloru()
-            document.getElementById("pom").value=pomocnicza
+            document.getElementById("pom").value = pomocnicza
             return pomocnicza
         }
-        
+
     })
 }
 
@@ -104,7 +113,7 @@ function tyl() {
 
 //     })
 //     return pomocnicza
-   
+
 // }
 
 function init() {

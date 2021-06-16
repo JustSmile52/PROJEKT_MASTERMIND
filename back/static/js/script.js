@@ -22,7 +22,7 @@ function buttonik() {
                 success: function (data) {
                     //wypisanie danych z serwera (pobranych z inputa)
                     console.log()
-                    window.location.href = "/gra"
+                    location.replace("/game")
                     // window.location.href = "http://localhost:8080"
                 },
                 error: function (xhr, status, error) {

@@ -17,6 +17,7 @@ import Config from './Config';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import marioMD2 from './assets/Icha.MD2';
 import Ico from './Ico';
+import active from '../index'
 
 export default class Main {
     constructor(container) {
@@ -67,7 +68,7 @@ export default class Main {
 
                 this.ico = new Ico(this.scene)
                 this.tablica_kostek[i][j] = this.ico
-                
+
                 x = -330 + i * 60
                 z = -90 + j * 60
                 this.ico.position.set(x, 0, z)
@@ -76,11 +77,11 @@ export default class Main {
                 this.tab2.push(this.ico)
             }
         }
-        for(let i = 0 ; i<4; i++){
-            this.tab2[i].active=true
+        for (let i = 0; i < 4; i++) {
+            this.tab2[i].active = true
         }
-        
-        
+
+
         console.log(this.tab2)
         //sfery
         /* let czerwona = new Sphere(0)
@@ -147,7 +148,6 @@ export default class Main {
 
         //raycaster
 
-
         // koniec statystyk
         this.stats.end()
 
@@ -160,8 +160,11 @@ export default class Main {
     }
 
 
-    getArray(){
+    getArray() {
         return this.ray.do_wyslania
+    }
+    getArray2() {
+        return this.tab2
     }
 
     showCard() {

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+        mastermind
+    </title>
+    <link rel="stylesheet" href=".style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script defer src="bundle.js?94b8d90b64722575d085"></script></head>
+
+<body>
+    <div id="root">
+        <div id="przyciski">
+            <i id="tyl" class="fa fa-arrow-left"></i>
+            <div id="kolorek"></div>
+            <i id="przod" class="fa fa-arrow-right"></i>
+            <button id="wysylka">Potwierdź</button>
+        </div>
+        <div id="tabela">
+            <table>
+                <tr>
+                    <th id="trafione">Ilość poprawnych trafień</th>
+                    <th id="nietrafione">Ilość niepoprawnych trafień</th>
+                </tr>
+                <tr>
+                    <td id="traf"></td>
+                    <td id="nietraf"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <input id="pom" type="hidden" value=0>
+</body>
+
+</html>

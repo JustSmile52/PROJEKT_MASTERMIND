@@ -1,17 +1,22 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js' // bundle.js to wynik kompilacji projektu przez webpacka
+        filename: 'bundle.js',
+        path: path.resolve(__dirname + "./../back/dist")
     },
     devServer: {
-        port: 8080
+        open: true,
+        openPage: "http://localhost:3000",
+        port: 8080,
+
     },
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            filename: './index.html',
+            filename: './gra.html',
             title: "page title",
             template: './src/index.html',
 
