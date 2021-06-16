@@ -4,6 +4,9 @@ const PORT = 3000;
 const path = require("path")
 const session = require("express-session")
 const cors = require("cors")
+const mongoClient = require('mongodb').MongoClient
+const ObjectID = require('mongodb').ObjectID;
+
 //const NewUser = require("./components/NewUser")
 
 app.use(express.static('static'))
@@ -25,7 +28,7 @@ app.post("/colors", function (req, res) {
     console.log(req.body)
 
 })
-app.post("/gra", function(req,res){
+app.post("/gra", function (req, res) {
     console.log(req.body.data);
     res.end()
 })
