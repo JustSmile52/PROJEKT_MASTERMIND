@@ -2,6 +2,7 @@ import './style.css';
 let rzad = 0
 let pomocnicza = 0
 let main = null
+let tura = 0
 import do_wyslania from './components/Raycasting'
 import Main from './components/Main';
 function zniana_koloru() {

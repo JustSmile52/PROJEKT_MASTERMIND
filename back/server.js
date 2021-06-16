@@ -5,6 +5,9 @@ const path = require("path")
 const session = require("express-session")
 const cors = require("cors")
 const cookie = require('cookie-parser')
+const color = kolor()
+
+
 //const NewUser = require("./components/NewUser")
 const Datastore = require('nedb')
 app.use(express.static('static'))
@@ -48,17 +51,13 @@ app.get("/porownywarka", function (req, res) {
             res.end(JSON.stringify(docs))
         })
 
-}
-)
+})
 app.post("/nick", function (req, res) {
     console.log(req.body)
     req.session.nick = req.body.nick
     res.end()
 })
-app.post("/colors", function (req, res) {
-    console.log(req.body)
 
-})
 app.post("/gra", function (req, res) {
 
     console.log(req.session.nick)
@@ -69,9 +68,30 @@ app.post("/gra", function (req, res) {
     baza.insert(pom, function (error, data) {
 
     })
+
     res.end()
 })
 app.listen(PORT, function () {
     console.log("start serwera na porcie " + PORT)
 })
 // dsadsa
+
+function kolor() {
+    let kolorki = []
+    for (i = 0; i < 4; i++) {
+        kolorki[i] = Math.floor(Math.random() * 5)
+
+    }
+    console.log(kolorki)
+
+    return kolorki
+}
+
+function porownywarka(dane) {
+    let licznik = 0
+    for (let i = 0; i < 4; i++) {
+        if (color[i] == dane[i]) {
+            licznik++
+        }
+    }
+}

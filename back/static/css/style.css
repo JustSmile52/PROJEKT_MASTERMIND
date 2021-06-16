@@ -15,5 +15,8 @@ button{
 
 }
 #logowanie {
-    margin: 40%;
+    margin-left: 40%;
+}
+#nick{
+    position: absolute;
 }
