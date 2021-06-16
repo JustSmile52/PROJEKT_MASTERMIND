@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(223, 250, 246);
+}
+h2{
+    color: lightpink;
+}
+
+input{
+    background-color: lightpink;
+    color: rgb(223, 250, 246);
+}
+button{
+    background-color: lightpink;
+    color: rgb(223, 250, 246);
+
+}
+#logowanie {
+    margin: 40%;
+}
