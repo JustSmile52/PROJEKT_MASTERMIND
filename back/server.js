@@ -3,10 +3,13 @@ const app = express()
 const PORT = 3000;
 const path = require("path")
 const session = require("express-session")
+const cors = require("cors")
 //const NewUser = require("./components/NewUser")
 
 app.use(express.static('static'))
 app.use(express.json())
+app.use(cors())
+
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname + "/static/register.html"))
@@ -21,6 +24,10 @@ app.post("/nick", function (req, res) {
 app.post("/colors", function (req, res) {
     console.log(req.body)
 
+})
+app.post("/gra", function(req,res){
+    console.log(req.body.data);
+    res.end()
 })
 app.listen(PORT, function () {
     console.log("start serwera na porcie " + PORT)

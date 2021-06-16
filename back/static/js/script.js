@@ -13,7 +13,6 @@ function buttonik() {
         }
         else {
             console.log(nick)
-            //! zapyatc  zcemu wywala randomowo
             var nick1 = { "nick": nick }
             $.ajax({
                 url: "/nick",

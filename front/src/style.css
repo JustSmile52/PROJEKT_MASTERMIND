@@ -61,3 +61,8 @@ td{
     margin-left: 60px;
     position: absolute;
 }
+#wysylka{
+    height:  50px;
+    background-color: cornflowerblue;
+    margin-left: 180px;
+}

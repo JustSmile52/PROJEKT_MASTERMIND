@@ -1,7 +1,8 @@
 import './style.css';
 
 let pomocnicza = 0
-
+let main =null
+import do_wyslania from './components/Raycasting'
 import Main from './components/Main';
 
 
@@ -30,7 +31,27 @@ function zniana_koloru() {
             break
     }
 }
+function wyslij(){
+    $("#wysylka").on("click", function () {
+    let sprawdzak = 0
+    let tablica = main.getArray()
+    for(let i=0;i<4;i++){
+        if (tablica[i]== null){
+            sprawdzak=sprawdzak+1
+        }
+    }
+    if(sprawdzak==0){
+        fetch("http://localhost:3000/gra", {method:"POST",body:JSON.stringify({data:tablica}),headers:{"Content-type":"application/json"}})
+        //wysylanko na serwer tablicy
+    }
+    else{
+        console.log('tablica jest niepelna')
+    }
 
+
+        
+    })
+}
 function przod() {
 
     $("#przod").on("click", function () {
@@ -90,9 +111,10 @@ function init() {
     //div
     const container = document.getElementById('root');
     //main class object
-    new Main(container);
+    main = new Main(container);
 }
 
 init();
 przod()
 tyl()
+wyslij()

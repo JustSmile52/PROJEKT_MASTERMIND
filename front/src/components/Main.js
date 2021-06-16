@@ -11,17 +11,12 @@ import {
 } from 'three';
 import Renderer from './Renderer';
 import Camera from './Camera';
-import ray from './Raycasting';
+import Raycasting from './Raycasting';
 import Keyboard from "./Keyboard";
 import Config from './Config';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import marioMD2 from './assets/Icha.MD2';
 import Ico from './Ico';
-import SphereRed from './Spheres/SpherevRed';
-import SphereBlue from './Spheres/SphereBlue';
-import SphereGreen from './Spheres/SphereGreen';
-import SphereYellow from './Spheres/SphereYellow';
-import SphereBlack from './Spheres/SphereBlack';
 
 export default class Main {
     constructor(container) {
@@ -71,45 +66,42 @@ export default class Main {
 
 
                 this.ico = new Ico(this.scene)
-                this.ico.pomocnicza = pom
                 this.tablica_kostek[i][j] = this.ico
-
-                pom = pom + 1
+                
                 x = -330 + i * 60
                 z = -90 + j * 60
                 this.ico.position.set(x, 0, z)
+                this.ico.pomocnicza = i + "-" + j
                 this.scene.add(this.ico)
-
-
                 this.tab2.push(this.ico)
             }
-
         }
+        for(let i = 0 ; i<4; i++){
+            this.tab2[i].active=true
+        }
+        
+        
+        console.log(this.tab2)
         //sfery
-        this.czerwona = new SphereRed(this.scene)
-        this.czerwona.position.set(100, 0, 200)
-        this.scene.add(this.czerwona)
+        /* let czerwona = new Sphere(0)
+        czerwona.position.set(100, 0, 200)
+        this.scene.add(czerwona)
 
-        this.niebieska = new SphereBlue(this.scene)
-        this.niebieska.position.set(100, 0, 250)
-        this.scene.add(this.niebieska)
+        let niebieska = new Sphere(1)
+        niebieska.position.set(100, 0, 250)
+        this.scene.add(niebieska)
 
-        this.zielona = new SphereGreen(this.scene)
-        this.zielona.position.set(150, 0, 200)
-        this.scene.add(this.zielona)
+        let zielona = new Sphere(2)
+        zielona.position.set(150, 0, 200)
+        this.scene.add(zielona)
 
-        this.zolta = new SphereYellow(this.scene)
-        this.zolta.position.set(150, 0, 250)
-        this.scene.add(this.zolta)
+        let zolta = new Sphere(3)
+        zolta.position.set(150, 0, 250)
+        this.scene.add(zolta)
 
-        this.czarna = new SphereBlack(this.scene)
-        this.czarna.position.set(200, 0, 250)
-        this.scene.add(this.czarna)
-
-
-
-
-
+        let czarna = new Sphere(4)
+        czarna.position.set(200, 0, 250)
+        this.scene.add(czarna)*/
 
         //raycast
         //
@@ -118,7 +110,7 @@ export default class Main {
         //
         //
         ///
-        this.ray = new ray(this.scene, this.camera, this.tab2, this.czerwona, this.niebieska, this.zielona, this.zolta, this.czarna)
+        this.ray = new Raycasting(this.scene, this.camera, this.tab2)
         // moniytor progressu ładowania
 
         this.manager.onProgress = (item, loaded, total) => {
@@ -150,24 +142,26 @@ export default class Main {
 
         // switch{
         //     case: GetElementbyId("kolorek").style.background-color = red,
-
         // }
 
 
         //raycaster
 
 
-
-
         // koniec statystyk
         this.stats.end()
 
-        // requestAnimationFrame(this.render.bind(this));
+        requestAnimationFrame(this.render.bind(this))
     }
 
     extractValue(reg, str) {
         const matches = str.match(reg);
         return matches && matches[0];
+    }
+
+
+    getArray(){
+        return this.ray.do_wyslania
     }
 
     showCard() {
