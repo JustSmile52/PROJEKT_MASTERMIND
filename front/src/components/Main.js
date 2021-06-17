@@ -88,7 +88,6 @@ export default class Main {
                 .then(res => res.json()
                 )
                 .then(res => {
-                    console.log(res)
                     if (res.wygrana) {
                         alert(`wygrał ${res.nick}`)
                         for (let i = 0; i < 48; i++) {
@@ -184,6 +183,10 @@ export default class Main {
     getArray() {
         return this.ray.do_wyslania
     }
+
+
+    // ta jest chyba niepotrzebna (nie chce mi sie sprawdzac)
+
     getArray2() {
         return this.tab2
     }

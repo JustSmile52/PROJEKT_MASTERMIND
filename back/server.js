@@ -6,6 +6,7 @@ const session = require("express-session")
 const cors = require("cors")
 const cookie = require('cookie-parser')
 const color = kolor()
+
 let global_nick = null
 let global_win = false
 
