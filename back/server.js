@@ -6,7 +6,8 @@ const session = require("express-session")
 const cors = require("cors")
 const cookie = require('cookie-parser')
 const color = kolor()
-
+let global_nick = null
+let global_win = false
 
 //const NewUser = require("./components/NewUser")
 const Datastore = require('nedb');
@@ -35,6 +36,21 @@ app.use(
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname + "/static/register.html"))
 })
+app.get("/global", function (req, res) {
+    if(global_win == true){
+        let pom = {
+            wygrana: global_win,
+            nick: global_nick
+        }
+        res.end(JSON.stringify(pom))
+    }
+    else{
+        res.end(JSON.stringify({
+            wygrana: global_win,
+            nick: global_nick
+        }))
+    }
+})
 app.get("/helper", function (req, res) {
     res.sendFile(path.join(__dirname + "/static/register.html"))
 })
@@ -50,7 +66,7 @@ app.get("/porownywarka", function (req, res) {
         function (error, docs) {
 
             const licznik = porownywarka(docs[0].ustawienie)
-            console.log(licznik)
+          
             res.end(licznik.toString())
 
         })
@@ -75,6 +91,22 @@ app.post("/gra", function (req, res) {
 
     res.end()
 })
+
+app.post("/wygrana", function (req, res) {
+    console.log(req.body.wygranko)
+    req.session.wygranko = req.body.wygranko
+    let wygranko = req.session.wygranko
+
+    if(wygranko==true){
+        global_win = true
+        global_nick = req.session.nick
+
+    }
+    console.log("cons wygrana" + wygranko)
+
+    res.end()
+})
+
 app.listen(PORT, function () {
     console.log("start serwera na porcie " + PORT)
 })

@@ -18,8 +18,6 @@ table{
 }
 th{
  border: 1px solid black;
-
- 
  height: 10%;
 }
 td{
@@ -28,20 +26,20 @@ td{
 }
 #trafione{
     height: 50px;
-    background-color: green;
+    background-color: red;
 }
 #nietrafione{
     height: 50px;
-    background-color: red;
+    background-color: green;
 }
 #traf{
-    color: green;
-}
-#nietraf{
     color: red;
 }
+#nietraf{
+    color: green;
+}
 #przyciski{
-    margin-top: 750px;
+    margin-top: 40%;
     margin-left: 45%;
     position: absolute;
 }

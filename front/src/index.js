@@ -3,6 +3,7 @@ let rzad = 0
 let pomocnicza = 0
 let main = null
 let tura = 0
+let wygrana = false
 import do_wyslania from './components/Raycasting'
 import Main from './components/Main';
 function zniana_koloru() {
@@ -49,10 +50,10 @@ function wyslij() {
                 console.log(main.tab2[i + rzad * 4])
             }
             console.log(main.tab2)
-            fetch("http://localhost:3000/gra", { method: "POST", body: JSON.stringify({ data: tablica, tura: tura }), headers: { "Content-type": "application/json" } })
+            fetch("/gra", { method: "POST", body: JSON.stringify({ data: tablica, tura: tura }), headers: { "Content-type": "application/json" } })
                 .catch(err => console.log(err))
             tura++
-            fetch("http://localhost:3000/porownywarka", { method: "Get" })
+            fetch("/porownywarka", { method: "GET" })
                 .then(res => res.text())
                 .then(res => {
                     let tr = document.createElement("tr")
@@ -66,13 +67,22 @@ function wyslij() {
                     let pomoc = 4 - parseInt(res)
                     td2.innerText = ` ${pomoc} `
                     tr.appendChild(td2)
-
+                    
                     if (parseInt(res) == 4) {
-                        console.log("gratki wygrales")
+                        wygrana = true
                     }
+                    
+                    
 
                 })
                 .catch(err => console.log(err))
+
+                tablica = []
+                setTimeout(()=> {
+                    fetch("/wygrana", { method: "POST", body: JSON.stringify({ wygranko: wygrana }), headers: { "Content-type": "application/json" } })
+                    .catch(err => console.log(err))
+                },2000)
+                
             //wysylanko na serwer tablicy
 
         }
