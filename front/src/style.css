@@ -27,9 +27,11 @@ td{
     height: 90%; 
 }
 #trafione{
+    height: 50px;
     background-color: green;
 }
 #nietrafione{
+    height: 50px;
     background-color: red;
 }
 #traf{

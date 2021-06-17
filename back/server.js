@@ -9,7 +9,8 @@ const color = kolor()
 
 
 //const NewUser = require("./components/NewUser")
-const Datastore = require('nedb')
+const Datastore = require('nedb');
+const { parse } = require("path");
 app.use(express.static('static'))
 app.use(express.json())
 app.use(cors())
@@ -41,14 +42,17 @@ app.get("/game", function (req, res) {
     res.sendFile(path.join(__dirname + "/dist/gra.html"))
 })
 app.get("/porownywarka", function (req, res) {
-
+    console.log(req.session.nick, req.session.tura)
     baza.find({
         nick: req.session.nick,
+        tura: req.session.tura
     },
         function (error, docs) {
-            console.log(docs)
 
-            res.end(JSON.stringify(docs))
+            const licznik = porownywarka(docs[0].ustawienie)
+            console.log(licznik)
+            res.end(licznik.toString())
+
         })
 
 })
@@ -59,11 +63,11 @@ app.post("/nick", function (req, res) {
 })
 
 app.post("/gra", function (req, res) {
-
-    console.log(req.session.nick)
+    req.session.tura = req.body.tura
     let pom = {
         nick: req.session.nick,
         ustawienie: req.body.data,
+        tura: req.body.tura,
     }
     baza.insert(pom, function (error, data) {
 
@@ -88,10 +92,13 @@ function kolor() {
 }
 
 function porownywarka(dane) {
+
+    console.log(dane, color)
     let licznik = 0
     for (let i = 0; i < 4; i++) {
-        if (color[i] == dane[i]) {
+        if (color[i] == parseInt(dane[i])) {
             licznik++
         }
     }
+    return licznik
 }

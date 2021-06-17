@@ -49,7 +49,30 @@ function wyslij() {
                 console.log(main.tab2[i + rzad * 4])
             }
             console.log(main.tab2)
-            fetch("http://localhost:3000/gra", { method: "POST", body: JSON.stringify({ data: tablica }), headers: { "Content-type": "application/json" } })
+            fetch("http://localhost:3000/gra", { method: "POST", body: JSON.stringify({ data: tablica, tura: tura }), headers: { "Content-type": "application/json" } })
+                .catch(err => console.log(err))
+            tura++
+            fetch("http://localhost:3000/porownywarka", { method: "Get" })
+                .then(res => res.text())
+                .then(res => {
+                    let tr = document.createElement("tr")
+                    let td = document.createElement("td")
+                    let tabelka = document.getElementById("tabelka")
+                    tabelka.appendChild(tr)
+                    let pierwsza = parseInt(res)
+                    td.innerText = ` ${pierwsza} `
+                    tr.appendChild(td)
+                    let td2 = document.createElement("td")
+                    let pomoc = 4 - parseInt(res)
+                    td2.innerText = ` ${pomoc} `
+                    tr.appendChild(td2)
+
+                    if (parseInt(res) == 4) {
+                        console.log("gratki wygrales")
+                    }
+
+                })
+                .catch(err => console.log(err))
             //wysylanko na serwer tablicy
 
         }
