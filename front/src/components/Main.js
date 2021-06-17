@@ -83,22 +83,25 @@ export default class Main {
 
         //////////////////////////TODO:  fetch z cyklicznym zapytaniem 1 o wygraną drugiego gracza
 
-        const n = setInterval(()=>{
-            fetch("/global", { method: "GET",  })
-            .then(res => res.json()
-            )
-            .then(res =>{
-                console.log(res)
-                if(res.wygrana){
-                    alert(`wygrał ${res.nick}`)
-                    clearInterval(n)
-                }
-            })
+        const n = setInterval(() => {
+            fetch("/global", { method: "GET", })
+                .then(res => res.json()
+                )
+                .then(res => {
+                    console.log(res)
+                    if (res.wygrana) {
+                        alert(`wygrał ${res.nick}`)
+                        for (let i = 0; i < 48; i++) {
+                            this.tab2[i].active = false
+                        }
+                        clearInterval(n)
+                    }
+                })
 
 
-            
-            .catch(err => console.log(err))
-        },500)
+
+                .catch(err => console.log(err))
+        }, 500)
 
         console.log(this.tab2)
         //sfery
