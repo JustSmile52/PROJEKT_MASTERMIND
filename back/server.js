@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const PORT = process.env.PORT|| 3000;
+const PORT = process.env.PORT || 3000;
 const path = require("path")
 const session = require("express-session")
 const cors = require("cors")
@@ -37,14 +37,14 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname + "/static/register.html"))
 })
 app.get("/global", function (req, res) {
-    if(global_win == true){
+    if (global_win == true) {
         let pom = {
             wygrana: global_win,
             nick: global_nick
         }
         res.end(JSON.stringify(pom))
     }
-    else{
+    else {
         res.end(JSON.stringify({
             wygrana: global_win,
             nick: global_nick
@@ -66,7 +66,7 @@ app.get("/porownywarka", function (req, res) {
         function (error, docs) {
 
             const licznik = porownywarka(docs[0].ustawienie)
-          
+
             res.end(licznik.toString())
 
         })
@@ -97,7 +97,7 @@ app.post("/wygrana", function (req, res) {
     req.session.wygranko = req.body.wygranko
     let wygranko = req.session.wygranko
 
-    if(wygranko==true){
+    if (wygranko == true) {
         global_win = true
         global_nick = req.session.nick
 
